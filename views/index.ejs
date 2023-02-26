@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link
+            rel="shortcut icon"
+            href="images/pronote.png"
+            type="image/x-icon"
+        />
+        <title>Moynote</title>
+    </head>
+    <body>
+        <nav>
+            <img src="images/pronote.png" alt="Logo Pronote" />
+            <h1>Moynote</h1>
+        </nav>
+        <div class="center">
+            <div class="box">
+                <h2>Savoir sa moyenne générale en un clic</h2>
+                <p>
+                    Entre ton identifiant et ton mot de passe Toutatice pour
+                    savoir ta moyenne
+                </p>
+                <form method="post" action="/average">
+                    <input
+                        type="text"
+                        name="username"
+                        autocomplete="username"
+                        class="text"
+                        placeholder="Identifiant"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Mot de passe"
+                        class="text"
+                    />
+                    <button type="submit" id="submit">Voir sa moyenne</button>
+                </form>
+                <p>Durée (3s - 1min)</p>
+            </div>
+        </div>
+        <div class="center">
+            <div class="response">
+                <div class="lds-ellipsis" id="loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <button id="more" style="display: <%=more%>">> Détail</button>
+                <ul id="list" style="display: none">
+                    <% for(var i=0; i < matters.length; i++) { %>
+                    <li><%= matters[i][0]%> : <%=matters[i][1]%></li>
+                    <% } %>
+                </ul>
+                <h3><%= average%></h3>
+            </div>
+        </div>
+
+        <script src="js/load.js"></script>
+    </body>
+</html>
