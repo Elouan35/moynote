@@ -4,7 +4,7 @@ const sleep = async (ms) => {
     return await new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-const clickButtonNavigation = async (page, selector) => {
+const clickButton = async (page, selector, nav = false) => {
     console.log(`\tClick on ${selector} and Navigate`);
     const button = await page.waitForSelector(selector);
     console.log("Button find : ✓");
@@ -12,17 +12,10 @@ const clickButtonNavigation = async (page, selector) => {
     await button.click();
     console.log("Button Click : ✓");
 
-    await page.waitForNavigation({ waitUntil: "networkidle2" });
-    console.log("Navigation : ✓\n");
-};
-
-const clickButton = async (page, selector) => {
-    console.log(`\tClick on ${selector}`);
-    const button = await page.waitForSelector(selector);
-    console.log("Button find : ✓");
-
-    await button.click();
-    console.log("Button Click : ✓\n");
+    if (nav) {
+        await page.waitForNavigation({ waitUntil: "networkidle2" });
+        console.log("Navigation : ✓\n");
+    }
 };
 
 const isLoaded = async (page) => {
@@ -58,9 +51,9 @@ module.exports = {
             await page.goto("https://www.toutatice.fr/portail");
             console.log("Page loaded : ✓\n");
 
-            await clickButtonNavigation(page, "a.btn-login");
+            await clickButton(page, "a.btn-login", (nav = true));
 
-            await clickButtonNavigation(page, "a");
+            await clickButton(page, "a", (nav = true));
 
             await clickButton(page, "#bouton_eleve");
 
@@ -69,7 +62,7 @@ module.exports = {
             await page.type("#password", password);
             console.log("Password : ✓");
 
-            await clickButtonNavigation(page, "#bouton_valider");
+            await clickButton(page, "#bouton_valider", (nav = true));
 
             await clickButton(page, "#travaux > div > div > a");
             await page.goto(
@@ -79,7 +72,6 @@ module.exports = {
                 }
             );
 
-            /*await page.waitForSelector("article.notes");*/
             console.log("Loaded New Page : ✓\n");
 
             await clickButton(page, "article.notes header h3");
@@ -103,7 +95,7 @@ module.exports = {
                     (m) => m.textContent
                 );
 
-                matters.push([matter,note]);
+                matters.push([matter, note]);
                 console.log(`\n${matter} : ${note}`);
 
                 if (note !== "N.Not") {
@@ -115,7 +107,7 @@ module.exports = {
             console.log(`\nMoyenne Générale : ${Mnote.toString()}\n`);
 
             await browser.close();
-            return {matters, Mnote};
+            return { matters, Mnote };
         } catch (err) {
             console.log(err.message);
         }
