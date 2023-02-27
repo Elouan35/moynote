@@ -12,10 +12,21 @@ Pour utiliser Moynote, vous devez avoir installé Node.js sur votre ordinateur. 
 git clone https://github.com/elouan35/moynote.git
 cd moynote
 npm install
+```
+
+## Démarrer le site
+
+Utiliser la commande :
+
+```bash
 npm start
 ```
 
 Vous pouvez ensuite accéder à Moynote en ouvrant votre navigateur et en allant à l'adresse http://localhost:8080.
+
+ou
+
+Lancer le fichier `main.bat` (vérifier les paramètres du fichier au préalable)
 
 ## Utilisation
 
