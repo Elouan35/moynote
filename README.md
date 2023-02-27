@@ -24,7 +24,7 @@ npm start
 
 Vous pouvez ensuite accéder à Moynote en ouvrant votre navigateur et en allant à l'adresse http://localhost:8080.
 
-ou
+### ou
 
 Lancer le fichier `main.bat` (vérifier les paramètres du fichier au préalable)
 
