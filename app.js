@@ -80,7 +80,7 @@ module.exports = {
 
             var Mnote = 0;
             var lenMnote = 0;
-            console.log("Notes retrieve : ✓_n");
+            console.log("Notes retrieve : ✓\n");
 
             let matters = [];
 
