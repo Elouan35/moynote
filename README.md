@@ -38,4 +38,4 @@ Le style et les couleurs de Moynote ont été inspirés par le logiciel Pronote,
 
 ## Licence
 
-Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, le modifier et le distribuer selon vos besoins. Voir le fichier LICENSE pour plus d'informations.
+Ce projet est sous licence MIT. Vous êtes libre de l'utiliser, le modifier et le distribuer selon vos besoins. Voir le fichier `LICENSE` pour plus d'informations.
