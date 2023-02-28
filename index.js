@@ -7,12 +7,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 const PORT = 8080;
 
+/* Charger la page principal */
 app.get("/", (req, res) => {
+    /* Afficher la page */
     app.set("view engine", "ejs");
     res.render("index.ejs", { matters: [], average: "", more: "none" });
+
+    /* Implémenter le dossier public */
     app.use(express.static("public"));
 });
 
+/* Lancer la récupération des informations */
 app.post("/average", async (req, res) => {
     app.set("view engine", "ejs");
     var username = req.body.username;
@@ -23,6 +28,7 @@ app.post("/average", async (req, res) => {
                 username,
                 password
             );
+            /* Afficher la page */
             res.render("index.ejs", {
                 matters: matters,
                 average: `Moyenne Générale : ${Mnote.toString()}`,
@@ -34,9 +40,12 @@ app.post("/average", async (req, res) => {
     } else {
         res.redirect("/");
     }
+
+    /* Implémenter le dossier public */
     app.use(express.static("public"));
 });
 
 app.listen(PORT, () => {
+    /* Lancement du serveur */
     console.log("Le server est lancé sur le port", PORT);
 });

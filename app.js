@@ -1,10 +1,12 @@
 const puppeteer = require("puppeteer");
 
 const sleep = async (ms) => {
+    /* Attendre un temps "ms" donné */
     return await new Promise((resolve) => setTimeout(resolve, ms));
 };
 
 const clickButton = async (page, selector, nav = false) => {
+    /* Click sur un bouton d'une page */
     console.log(`\tClick on ${selector} and Navigate`);
     const button = await page.waitForSelector(selector);
     console.log("Button find : ✓");
@@ -12,18 +14,20 @@ const clickButton = async (page, selector, nav = false) => {
     await button.click();
     console.log("Button Click : ✓");
 
+    /* Attend la navigation ou le chargement de la page */
     if (nav) {
         await page.waitForNavigation({ waitUntil: "networkidle2" });
         console.log("Navigation : ✓\n");
     }
 };
 
-const isLoaded = async (page) => {
+const isLoaded = async (page, element) => {
+    /* Attendre qu'un élément charge sur une page */
     var loaded = false;
     while (loaded == false) {
         await sleep(1000);
         try {
-            const notesElements = await page.$$(".liste_contenu_ligne .Gras");
+            const notesElements = await page.$$(element);
             loaded = true;
             return notesElements;
         } catch (error) {
@@ -76,7 +80,7 @@ module.exports = {
 
             await clickButton(page, "article.notes header h3");
 
-            const notesElements = await isLoaded(page);
+            const notesElements = await isLoaded(page, element=".liste_contenu_ligne .Gras");
 
             var Mnote = 0;
             var lenMnote = 0;

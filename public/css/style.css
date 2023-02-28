@@ -1,3 +1,4 @@
+/* Global Style */
 * {
     margin: 0;
     padding: 0;
@@ -31,6 +32,7 @@ p {
     line-height: 100%;
 }
 
+/* Nav Style */
 nav {
     padding: 2vh 2vw;
     display: flex;
@@ -50,6 +52,7 @@ nav h1 {
     color: #f2f2f2;
 }
 
+/* Form Style */
 .center {
     display: flex;
     justify-content: center;
@@ -133,6 +136,7 @@ input:-webkit-autofill:focus {
     transform: scaleY(1);
 }
 
+/* Résultat de la requête */
 .center .response {
     display: flex;
     flex-direction: column;
@@ -161,6 +165,7 @@ input:-webkit-autofill:focus {
     margin-bottom: 20px;
 }
 
+/* Animation de recherche */
 .lds-ellipsis {
     display: none;
     position: relative;
