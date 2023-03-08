@@ -11,7 +11,12 @@ const PORT = 8080;
 app.get("/", (req, res) => {
     /* Afficher la page */
     app.set("view engine", "ejs");
-    res.render("index.ejs", { matters: [], average: "", more: "none" });
+    res.render("index.ejs", {
+        matters: [],
+        average: "",
+        more: "none",
+        time: "",
+    });
 
     /* Implémenter le dossier public */
     app.use(express.static("public"));
@@ -24,15 +29,18 @@ app.post("/average", async (req, res) => {
     var password = req.body.password;
     if (username.length > 2 && password.length > 6) {
         try {
+            var d = new Date();
             const { matters, Mnote } = await average.average(
                 username,
                 password
             );
+            var s = d.getSeconds();
             /* Afficher la page */
             res.render("index.ejs", {
                 matters: matters,
                 average: `Moyenne Générale : ${Mnote.toString()}`,
                 more: "block",
+                time: ` : ${s} sec `,
             });
         } catch (error) {
             res.redirect("/");
